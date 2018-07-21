@@ -13,24 +13,24 @@
 
   <!--Version. Updates from the store only get triggered if there is a version change. -->
   <Version>1.0.0.0</Version>
-  <ProviderName>[Provider name]</ProviderName>
+  <ProviderName>Morone</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
-  <DisplayName DefaultValue="plugin-reader-addin" />
-  <Description DefaultValue="[Workbook Add-in description]"/>
+  <DisplayName DefaultValue="API Reader" />
+  <Description DefaultValue="This ADD-IN brings data from any rest API and convert it to columns and lines!"/>
 
   <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png" />
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/hi-res-icon.png"/>
 
   <!--If you plan to submit this add-in to the Office Store, uncomment the SupportUrl element below-->
-  <!--<SupportUrl DefaultValue="[Insert the URL of a page that provides support information for the app]">-->
+  <SupportUrl DefaultValue="https://github.com/morone" />
 
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
-  <AppDomains>
+  <!-- <AppDomains>
     <AppDomain>AppDomain2</AppDomain>
     <AppDomain>AppDomain3</AppDomain>
-  </AppDomains>
+  </AppDomains> -->
   <!--End Basic Settings. -->
 
   <!--Begin TaskPane Mode integration. This section is used if there are no VersionOverrides or if the Office client version does not support add-in commands. -->
@@ -129,14 +129,14 @@
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="Contoso.TaskpaneButton.Label" DefaultValue="Show Taskpane" />
+        <bt:String id="Contoso.TaskpaneButton.Label" DefaultValue="API Reader" />
         <bt:String id="Contoso.Group1Label" DefaultValue="Commands Group" />
-        <bt:String id="Contoso.GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
+        <bt:String id="Contoso.GetStarted.Title" DefaultValue="Welcome" />
       </bt:ShortStrings>
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
-        <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane" />
-        <bt:String id="Contoso.GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started." />
+        <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show the Panel" />
+        <bt:String id="Contoso.GetStarted.Description" DefaultValue="API Reader loaded succesfully. Go to the HOME tab and click the 'API Reader' button to get started." />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

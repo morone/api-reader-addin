@@ -20,53 +20,53 @@ async function run(){
 
         await Excel.run(async context => {
 
-            var columns = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split("");
-            
-            var result;
-            var keys;
-            var colIndex = 0;
-            var rowIndex = 2;
-            var colNames = [];
-            var self = this;
-            var sheet = context.workbook.worksheets.getActiveWorksheet();
+            if ($('#api-url').val() != ''){
 
-            sheet.getRange().clear();
-            
-            await context.sync();
+                var columns = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split("");
+                
+                var result;
+                var keys;
+                var colIndex = 0;
+                var rowIndex = 2;
+                var colNames = [];
+                var self = this;
+                var sheet = context.workbook.worksheets.getActiveWorksheet();
 
-            jQuery.ajax({
-                context: this,
-                url: $('#api-url').val(),
-                type: "GET",
-                contentType: 'application/json',
-                timeout: 120000,
-                async: false,
-            }).done(function(r){
-                this.result = r;
-                this.keys = Object.keys(r[0]);
-            });
+                sheet.getRange().clear();
+                
+                await context.sync();
 
-            
+                jQuery.ajax({
+                    context: this,
+                    url: $('#api-url').val(),
+                    type: "GET",
+                    contentType: 'application/json',
+                    timeout: 120000,
+                    async: false,
+                }).done(function(r){
+                    this.result = r;
+                    this.keys = Object.keys(r[0]);
+                });
 
-            this.keys.forEach(function(header){
-                sheet.getRange(columns[colIndex] + "1").values = [[ header ]];
-                colNames.push(header);
-                colIndex++;
-            });
+                if (typeof(this.result) === 'object'){
+                    this.keys.forEach(function(header){
+                        sheet.getRange(columns[colIndex] + "1").values = [[ header ]];
+                        colNames.push(header);
+                        colIndex++;
+                    });
 
-            colIndex = 0;
-            
-            console.log(colNames);
+                    colIndex = 0;
 
-            this.result.forEach(function(data){
-                self.keys.forEach(function(header){
-                    sheet.getRange(columns[colIndex] + rowIndex).values = [[ JSON.stringify(data[colNames[colIndex]]) ]];
-                    colIndex++;                    
-                }, this);
-                colIndex = 0;
-                rowIndex++;
-            });
-
+                    this.result.forEach(function(data){
+                        self.keys.forEach(function(header){
+                            sheet.getRange(columns[colIndex] + rowIndex).values = [[ JSON.stringify(data[colNames[colIndex]]) ]];
+                            colIndex++;                    
+                        }, this);
+                        colIndex = 0;
+                        rowIndex++;
+                    });
+                }
+            }
         });
 
     }catch(error) {
